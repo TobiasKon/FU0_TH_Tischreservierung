@@ -6,7 +6,7 @@ app = FastAPI()
 
 class Tables(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    seatings: str = Field(index=True)
+    seatings: int = Field(index=True)
     
 class Reservations(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
