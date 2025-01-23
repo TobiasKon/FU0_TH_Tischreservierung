@@ -4,15 +4,16 @@ from sqlmodel import Field, Session, SQLModel, create_engine, select
 app = FastAPI()
 
 
-class Table(SQLModel, table=True):
+class Tables(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     seatings: str = Field(index=True)
-
-class Reservation(SQLModel, table=True):
+    
+class Reservations(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    table_id: int = Field(foreign_key="Table.id")
+    table_id: int = Field(foreign_key="Tables.id")
     time: str
-
+    date: str
+    cancellation_pin: str
 
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
