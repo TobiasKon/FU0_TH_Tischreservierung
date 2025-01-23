@@ -4,11 +4,14 @@ from sqlmodel import Field, Session, SQLModel, create_engine, select
 app = FastAPI()
 
 
-class Hero(SQLModel, table=True):
+class Table(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    name: str = Field(index=True)
-    age: int | None = Field(default=None, index=True)
-    secret_name: str
+    seatings: str = Field(index=True)
+
+class Reservation(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    table_id: int = Field(foreign_key="Table.id")
+    time: str
 
 
 sqlite_file_name = "database.db"
